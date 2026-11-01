@@ -40,7 +40,18 @@
             lblSearchLocation = new Label();
             lblSavedIssues = new Label();
             grpIssueDetails = new GroupBox();
+            dtpDateReported = new DateTimePicker();
+            cboCategory = new ComboBox();
+            txtLocation = new TextBox();
+            txtIssueID = new TextBox();
+            lblDateReported = new Label();
+            lblCategory = new Label();
+            lblLocation = new Label();
+            lblIssueID = new Label();
+            dgvIssues = new DataGridView();
             grpFindIssues.SuspendLayout();
+            grpIssueDetails.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvIssues).BeginInit();
             SuspendLayout();
             // 
             // lblTitle
@@ -154,18 +165,113 @@
             // 
             // grpIssueDetails
             // 
-            grpIssueDetails.Location = new Point(20, 381);
+            grpIssueDetails.Controls.Add(dtpDateReported);
+            grpIssueDetails.Controls.Add(cboCategory);
+            grpIssueDetails.Controls.Add(txtLocation);
+            grpIssueDetails.Controls.Add(txtIssueID);
+            grpIssueDetails.Controls.Add(lblDateReported);
+            grpIssueDetails.Controls.Add(lblCategory);
+            grpIssueDetails.Controls.Add(lblLocation);
+            grpIssueDetails.Controls.Add(lblIssueID);
+            grpIssueDetails.Location = new Point(20, 490);
             grpIssueDetails.Name = "grpIssueDetails";
             grpIssueDetails.Size = new Size(1120, 285);
             grpIssueDetails.TabIndex = 4;
             grpIssueDetails.TabStop = false;
             grpIssueDetails.Text = "Issue Details";
             // 
+            // dtpDateReported
+            // 
+            dtpDateReported.Format = DateTimePickerFormat.Short;
+            dtpDateReported.Location = new Point(820, 60);
+            dtpDateReported.Name = "dtpDateReported";
+            dtpDateReported.Size = new Size(280, 25);
+            dtpDateReported.TabIndex = 7;
+            // 
+            // cboCategory
+            // 
+            cboCategory.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboCategory.FormattingEnabled = true;
+            cboCategory.Items.AddRange(new object[] { "Lighting", "Furniture", "Heating", "Other" });
+            cboCategory.Location = new Point(520, 60);
+            cboCategory.Name = "cboCategory";
+            cboCategory.Size = new Size(278, 25);
+            cboCategory.TabIndex = 6;
+            // 
+            // txtLocation
+            // 
+            txtLocation.Location = new Point(190, 60);
+            txtLocation.Name = "txtLocation";
+            txtLocation.Size = new Size(308, 25);
+            txtLocation.TabIndex = 5;
+            txtLocation.TabStop = false;
+            // 
+            // txtIssueID
+            // 
+            txtIssueID.Location = new Point(18, 60);
+            txtIssueID.Name = "txtIssueID";
+            txtIssueID.ReadOnly = true;
+            txtIssueID.Size = new Size(150, 25);
+            txtIssueID.TabIndex = 4;
+            // 
+            // lblDateReported
+            // 
+            lblDateReported.AutoSize = true;
+            lblDateReported.Location = new Point(820, 35);
+            lblDateReported.Name = "lblDateReported";
+            lblDateReported.Size = new Size(95, 19);
+            lblDateReported.TabIndex = 3;
+            lblDateReported.Text = "Date reported";
+            // 
+            // lblCategory
+            // 
+            lblCategory.AutoSize = true;
+            lblCategory.Location = new Point(520, 35);
+            lblCategory.Name = "lblCategory";
+            lblCategory.Size = new Size(65, 19);
+            lblCategory.TabIndex = 2;
+            lblCategory.Text = "Category";
+            // 
+            // lblLocation
+            // 
+            lblLocation.AutoSize = true;
+            lblLocation.Location = new Point(190, 35);
+            lblLocation.Name = "lblLocation";
+            lblLocation.Size = new Size(61, 19);
+            lblLocation.TabIndex = 1;
+            lblLocation.Text = "Location";
+            // 
+            // lblIssueID
+            // 
+            lblIssueID.AutoSize = true;
+            lblIssueID.Location = new Point(18, 35);
+            lblIssueID.Name = "lblIssueID";
+            lblIssueID.Size = new Size(131, 19);
+            lblIssueID.TabIndex = 0;
+            lblIssueID.Text = "Issue ID (automatic)";
+            // 
+            // dgvIssues
+            // 
+            dgvIssues.AllowUserToAddRows = false;
+            dgvIssues.AllowUserToDeleteRows = false;
+            dgvIssues.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvIssues.BackgroundColor = SystemColors.Window;
+            dgvIssues.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvIssues.Location = new Point(20, 250);
+            dgvIssues.MultiSelect = false;
+            dgvIssues.Name = "dgvIssues";
+            dgvIssues.ReadOnly = true;
+            dgvIssues.RowHeadersVisible = false;
+            dgvIssues.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvIssues.Size = new Size(1120, 215);
+            dgvIssues.TabIndex = 5;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1144, 876);
+            Controls.Add(dgvIssues);
             Controls.Add(grpIssueDetails);
             Controls.Add(lblSavedIssues);
             Controls.Add(grpFindIssues);
@@ -177,6 +283,9 @@
             Text = "Campus facilities Issue Register";
             grpFindIssues.ResumeLayout(false);
             grpFindIssues.PerformLayout();
+            grpIssueDetails.ResumeLayout(false);
+            grpIssueDetails.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvIssues).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -195,5 +304,14 @@
         private TextBox txtSearchLocation;
         private Label lblFilterStatus;
         private Label lblSearchLocation;
+        private DataGridView dgvIssues;
+        private Label lblDateReported;
+        private Label lblCategory;
+        private Label lblLocation;
+        private Label lblIssueID;
+        private DateTimePicker dtpDateReported;
+        private ComboBox cboCategory;
+        private TextBox txtLocation;
+        private TextBox txtIssueID;
     }
 }
