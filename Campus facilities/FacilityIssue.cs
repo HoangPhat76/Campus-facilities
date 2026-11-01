@@ -108,6 +108,7 @@ namespace Campus_facilities
 
             if (reportedBy.Length > 100)
                 return "Reported By cannot exceed 100 characters.";
+            
             return "";
         }
     }
