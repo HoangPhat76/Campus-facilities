@@ -63,5 +63,20 @@ namespace Campus_facilities
             get { return reportedBy; }
             set { reportedBy = value; }
         }
+
+        public string Validate()
+        {
+            if (string.IsNullOrWhiteSpace(location))
+                return "Location is required.";
+            if (string.IsNullOrWhiteSpace(description))
+                return "Description is required.";
+            if (string.IsNullOrWhiteSpace(category))
+                return "Category is required.";
+            if (string.IsNullOrWhiteSpace(priority))
+                return "Priority is required.";
+            if (string.IsNullOrWhiteSpace(reportedBy))
+                return "Reported By is required.";
+            return null; // No validation errors
+        }
     }
 }
