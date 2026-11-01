@@ -31,15 +31,15 @@
             lblTitle = new Label();
             lblInstructions = new Label();
             grpFindIssues = new GroupBox();
+            btnShowAll = new Button();
+            btnSearchFilter = new Button();
+            cboFilterStatus = new ComboBox();
+            lblFilterHelp = new Label();
+            txtSearchLocation = new TextBox();
+            lblFilterStatus = new Label();
+            lblSearchLocation = new Label();
             lblSavedIssues = new Label();
             grpIssueDetails = new GroupBox();
-            lblSearchLocation = new Label();
-            lblFilterStatus = new Label();
-            textBox1 = new TextBox();
-            this.lblFilterHelp = new Label();
-            comboBox1 = new ComboBox();
-            button1 = new Button();
-            button2 = new Button();
             grpFindIssues.SuspendLayout();
             SuspendLayout();
             // 
@@ -64,11 +64,11 @@
             // 
             // grpFindIssues
             // 
-            grpFindIssues.Controls.Add(button2);
-            grpFindIssues.Controls.Add(button1);
-            grpFindIssues.Controls.Add(comboBox1);
-            grpFindIssues.Controls.Add(this.lblFilterHelp);
-            grpFindIssues.Controls.Add(textBox1);
+            grpFindIssues.Controls.Add(btnShowAll);
+            grpFindIssues.Controls.Add(btnSearchFilter);
+            grpFindIssues.Controls.Add(cboFilterStatus);
+            grpFindIssues.Controls.Add(lblFilterHelp);
+            grpFindIssues.Controls.Add(txtSearchLocation);
             grpFindIssues.Controls.Add(lblFilterStatus);
             grpFindIssues.Controls.Add(lblSearchLocation);
             grpFindIssues.Location = new Point(20, 90);
@@ -77,6 +77,70 @@
             grpFindIssues.TabIndex = 2;
             grpFindIssues.TabStop = false;
             grpFindIssues.Text = "Find Issues";
+            // 
+            // btnShowAll
+            // 
+            btnShowAll.AutoSize = true;
+            btnShowAll.Location = new Point(890, 46);
+            btnShowAll.Name = "btnShowAll";
+            btnShowAll.Size = new Size(210, 33);
+            btnShowAll.TabIndex = 6;
+            btnShowAll.Text = "Show All";
+            btnShowAll.UseVisualStyleBackColor = true;
+            // 
+            // btnSearchFilter
+            // 
+            btnSearchFilter.AutoSize = true;
+            btnSearchFilter.Location = new Point(692, 46);
+            btnSearchFilter.Name = "btnSearchFilter";
+            btnSearchFilter.Size = new Size(180, 33);
+            btnSearchFilter.TabIndex = 5;
+            btnSearchFilter.Text = "Search / Filter";
+            btnSearchFilter.UseVisualStyleBackColor = true;
+            // 
+            // cboFilterStatus
+            // 
+            cboFilterStatus.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboFilterStatus.FormattingEnabled = true;
+            cboFilterStatus.Items.AddRange(new object[] { "All", "Outstanding", "Open", "In Progress", "Resolved" });
+            cboFilterStatus.Location = new Point(405, 48);
+            cboFilterStatus.Name = "cboFilterStatus";
+            cboFilterStatus.Size = new Size(265, 25);
+            cboFilterStatus.TabIndex = 4;
+            // 
+            // lblFilterHelp
+            // 
+            lblFilterHelp.AutoSize = true;
+            lblFilterHelp.Location = new Point(18, 87);
+            lblFilterHelp.Name = "lblFilterHelp";
+            lblFilterHelp.Size = new Size(441, 19);
+            lblFilterHelp.TabIndex = 3;
+            lblFilterHelp.Text = "Outstanding = Open + In Progress. Show All includes resolved records";
+            // 
+            // txtSearchLocation
+            // 
+            txtSearchLocation.Location = new Point(18, 48);
+            txtSearchLocation.Name = "txtSearchLocation";
+            txtSearchLocation.Size = new Size(365, 25);
+            txtSearchLocation.TabIndex = 2;
+            // 
+            // lblFilterStatus
+            // 
+            lblFilterStatus.AutoSize = true;
+            lblFilterStatus.Location = new Point(405, 25);
+            lblFilterStatus.Name = "lblFilterStatus";
+            lblFilterStatus.Size = new Size(81, 19);
+            lblFilterStatus.TabIndex = 1;
+            lblFilterStatus.Text = "Filter Status";
+            // 
+            // lblSearchLocation
+            // 
+            lblSearchLocation.AutoSize = true;
+            lblSearchLocation.Location = new Point(18, 25);
+            lblSearchLocation.Name = "lblSearchLocation";
+            lblSearchLocation.Size = new Size(101, 19);
+            lblSearchLocation.TabIndex = 0;
+            lblSearchLocation.Text = "Search location";
             // 
             // lblSavedIssues
             // 
@@ -96,66 +160,6 @@
             grpIssueDetails.TabIndex = 4;
             grpIssueDetails.TabStop = false;
             grpIssueDetails.Text = "Issue Details";
-            // 
-            // lblSearchLocation
-            // 
-            lblSearchLocation.AutoSize = true;
-            lblSearchLocation.Location = new Point(18, 25);
-            lblSearchLocation.Name = "lblSearchLocation";
-            lblSearchLocation.Size = new Size(101, 19);
-            lblSearchLocation.TabIndex = 0;
-            lblSearchLocation.Text = "Search location";
-            // 
-            // lblFilterStatus
-            // 
-            lblFilterStatus.AutoSize = true;
-            lblFilterStatus.Location = new Point(405, 25);
-            lblFilterStatus.Name = "lblFilterStatus";
-            lblFilterStatus.Size = new Size(81, 19);
-            lblFilterStatus.TabIndex = 1;
-            lblFilterStatus.Text = "Filter Status";
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(243, 50);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(100, 25);
-            textBox1.TabIndex = 2;
-            // 
-            // lblFilterHelp
-            // 
-            this.lblFilterHelp.AutoSize = true;
-            this.lblFilterHelp.Location = new Point(145, 52);
-            this.lblFilterHelp.Name = "lblFilterHelp";
-            this.lblFilterHelp.Size = new Size(441, 19);
-            this.lblFilterHelp.TabIndex = 3;
-            this.lblFilterHelp.Text = "Outstanding = Open + In Progress. Show All includes resolved records";
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(471, 39);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(121, 25);
-            comboBox1.TabIndex = 4;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(752, 53);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 5;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(896, 60);
-            button2.Name = "button2";
-            button2.Size = new Size(75, 23);
-            button2.TabIndex = 6;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -184,11 +188,11 @@
         private GroupBox grpFindIssues;
         private Label lblSavedIssues;
         private GroupBox grpIssueDetails;
-        private Button button2;
-        private Button button1;
-        private ComboBox comboBox1;
-        private Label label3;
-        private TextBox textBox1;
+        private Button btnShowAll;
+        private Button btnSearchFilter;
+        private ComboBox cboFilterStatus;
+        private Label lblFilterHelp;
+        private TextBox txtSearchLocation;
         private Label lblFilterStatus;
         private Label lblSearchLocation;
     }
