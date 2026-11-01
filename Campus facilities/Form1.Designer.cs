@@ -49,6 +49,19 @@
             lblLocation = new Label();
             lblIssueID = new Label();
             dgvIssues = new DataGridView();
+            lblDescription = new Label();
+            lblReportedBy = new Label();
+            lblPriority = new Label();
+            lblStatus = new Label();
+            comboBox1 = new ComboBox();
+            comboBox2 = new ComboBox();
+            textBox2 = new TextBox();
+            txtDescription = new RichTextBox();
+            btnClear = new Button();
+            button2 = new Button();
+            btnUpdate = new Button();
+            btnDelete = new Button();
+            lblMessage = new Label();
             grpFindIssues.SuspendLayout();
             grpIssueDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvIssues).BeginInit();
@@ -165,6 +178,18 @@
             // 
             // grpIssueDetails
             // 
+            grpIssueDetails.Controls.Add(btnDelete);
+            grpIssueDetails.Controls.Add(btnUpdate);
+            grpIssueDetails.Controls.Add(button2);
+            grpIssueDetails.Controls.Add(btnClear);
+            grpIssueDetails.Controls.Add(txtDescription);
+            grpIssueDetails.Controls.Add(textBox2);
+            grpIssueDetails.Controls.Add(comboBox2);
+            grpIssueDetails.Controls.Add(comboBox1);
+            grpIssueDetails.Controls.Add(lblStatus);
+            grpIssueDetails.Controls.Add(lblPriority);
+            grpIssueDetails.Controls.Add(lblReportedBy);
+            grpIssueDetails.Controls.Add(lblDescription);
             grpIssueDetails.Controls.Add(dtpDateReported);
             grpIssueDetails.Controls.Add(cboCategory);
             grpIssueDetails.Controls.Add(txtLocation);
@@ -266,11 +291,126 @@
             dgvIssues.Size = new Size(1120, 215);
             dgvIssues.TabIndex = 5;
             // 
+            // lblDescription
+            // 
+            lblDescription.AutoSize = true;
+            lblDescription.Location = new Point(18, 110);
+            lblDescription.Name = "lblDescription";
+            lblDescription.Size = new Size(78, 19);
+            lblDescription.TabIndex = 8;
+            lblDescription.Text = "Description";
+            // 
+            // lblReportedBy
+            // 
+            lblReportedBy.AutoSize = true;
+            lblReportedBy.Location = new Point(520, 170);
+            lblReportedBy.Name = "lblReportedBy";
+            lblReportedBy.Size = new Size(84, 19);
+            lblReportedBy.TabIndex = 9;
+            lblReportedBy.Text = "Reported by";
+            // 
+            // lblPriority
+            // 
+            lblPriority.AutoSize = true;
+            lblPriority.Location = new Point(520, 110);
+            lblPriority.Name = "lblPriority";
+            lblPriority.Size = new Size(53, 19);
+            lblPriority.TabIndex = 10;
+            lblPriority.Text = "Priority";
+            // 
+            // lblStatus
+            // 
+            lblStatus.AutoSize = true;
+            lblStatus.Location = new Point(820, 110);
+            lblStatus.Name = "lblStatus";
+            lblStatus.Size = new Size(47, 19);
+            lblStatus.TabIndex = 11;
+            lblStatus.Text = "Status";
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Low", "Medium", "High" });
+            comboBox1.Location = new Point(520, 135);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(278, 25);
+            comboBox1.TabIndex = 13;
+            // 
+            // comboBox2
+            // 
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Items.AddRange(new object[] { "Open", "In Progress", "Resolved" });
+            comboBox2.Location = new Point(820, 135);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(280, 25);
+            comboBox2.TabIndex = 14;
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(520, 195);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(580, 25);
+            textBox2.TabIndex = 15;
+            // 
+            // txtDescription
+            // 
+            txtDescription.Location = new Point(18, 135);
+            txtDescription.Name = "txtDescription";
+            txtDescription.Size = new Size(480, 90);
+            txtDescription.TabIndex = 16;
+            txtDescription.Text = "";
+            // 
+            // btnClear
+            // 
+            btnClear.Location = new Point(18, 240);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(150, 33);
+            btnClear.TabIndex = 17;
+            btnClear.Text = "New / Clear";
+            btnClear.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(190, 240);
+            button2.Name = "button2";
+            button2.Size = new Size(150, 33);
+            button2.TabIndex = 18;
+            button2.Text = "Add Issue";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // btnUpdate
+            // 
+            btnUpdate.Location = new Point(520, 240);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new Size(278, 33);
+            btnUpdate.TabIndex = 19;
+            btnUpdate.Text = "Update Selected";
+            btnUpdate.UseVisualStyleBackColor = true;
+            // 
+            // btnDelete
+            // 
+            btnDelete.Location = new Point(820, 240);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(280, 33);
+            btnDelete.TabIndex = 20;
+            btnDelete.Text = "Delete Selected";
+            btnDelete.UseVisualStyleBackColor = true;
+            // 
+            // lblMessage
+            // 
+            lblMessage.AutoSize = true;
+            lblMessage.Location = new Point(20, 785);
+            lblMessage.Name = "lblMessage";
+            lblMessage.Size = new Size(173, 19);
+            lblMessage.TabIndex = 6;
+            lblMessage.Text = "Ready to enter a new issue";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1144, 876);
+            Controls.Add(lblMessage);
             Controls.Add(dgvIssues);
             Controls.Add(grpIssueDetails);
             Controls.Add(lblSavedIssues);
@@ -313,5 +453,18 @@
         private ComboBox cboCategory;
         private TextBox txtLocation;
         private TextBox txtIssueID;
+        private ComboBox comboBox2;
+        private ComboBox comboBox1;
+        private Label lblStatus;
+        private Label lblPriority;
+        private Label lblReportedBy;
+        private Label lblDescription;
+        private RichTextBox txtDescription;
+        private TextBox textBox2;
+        private Button btnDelete;
+        private Button btnUpdate;
+        private Button button2;
+        private Button btnClear;
+        private Label lblMessage;
     }
 }
