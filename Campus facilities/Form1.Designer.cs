@@ -31,6 +31,8 @@
             lblTitle = new Label();
             lblInstructions = new Label();
             grpFindIssues = new GroupBox();
+            lblSavedIssues = new Label();
+            grpIssueDetails = new GroupBox();
             SuspendLayout();
             // 
             // lblTitle
@@ -61,11 +63,32 @@
             grpFindIssues.TabStop = false;
             grpFindIssues.Text = "Find Issues";
             // 
+            // lblSavedIssues
+            // 
+            lblSavedIssues.AutoSize = true;
+            lblSavedIssues.Font = new Font("Segoe UI", 11F);
+            lblSavedIssues.Location = new Point(20, 220);
+            lblSavedIssues.Name = "lblSavedIssues";
+            lblSavedIssues.Size = new Size(91, 20);
+            lblSavedIssues.TabIndex = 3;
+            lblSavedIssues.Text = "Saved Issues";
+            // 
+            // grpIssueDetails
+            // 
+            grpIssueDetails.Location = new Point(20, 381);
+            grpIssueDetails.Name = "grpIssueDetails";
+            grpIssueDetails.Size = new Size(1120, 285);
+            grpIssueDetails.TabIndex = 4;
+            grpIssueDetails.TabStop = false;
+            grpIssueDetails.Text = "Issue Details";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1144, 876);
+            Controls.Add(grpIssueDetails);
+            Controls.Add(lblSavedIssues);
             Controls.Add(grpFindIssues);
             Controls.Add(lblInstructions);
             Controls.Add(lblTitle);
@@ -82,5 +105,7 @@
         private Label lblTitle;
         private Label lblInstructions;
         private GroupBox grpFindIssues;
+        private Label lblSavedIssues;
+        private GroupBox grpIssueDetails;
     }
 }
