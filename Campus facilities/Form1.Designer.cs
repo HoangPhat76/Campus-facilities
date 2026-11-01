@@ -40,6 +40,18 @@
             lblSearchLocation = new Label();
             lblSavedIssues = new Label();
             grpIssueDetails = new GroupBox();
+            btnDelete = new Button();
+            btnUpdate = new Button();
+            button2 = new Button();
+            btnClear = new Button();
+            txtDescription = new RichTextBox();
+            textBox2 = new TextBox();
+            comboBox2 = new ComboBox();
+            comboBox1 = new ComboBox();
+            lblStatus = new Label();
+            lblPriority = new Label();
+            lblReportedBy = new Label();
+            lblDescription = new Label();
             dtpDateReported = new DateTimePicker();
             cboCategory = new ComboBox();
             txtLocation = new TextBox();
@@ -49,18 +61,6 @@
             lblLocation = new Label();
             lblIssueID = new Label();
             dgvIssues = new DataGridView();
-            lblDescription = new Label();
-            lblReportedBy = new Label();
-            lblPriority = new Label();
-            lblStatus = new Label();
-            comboBox1 = new ComboBox();
-            comboBox2 = new ComboBox();
-            textBox2 = new TextBox();
-            txtDescription = new RichTextBox();
-            btnClear = new Button();
-            button2 = new Button();
-            btnUpdate = new Button();
-            btnDelete = new Button();
             lblMessage = new Label();
             grpFindIssues.SuspendLayout();
             grpIssueDetails.SuspendLayout();
@@ -111,6 +111,7 @@
             btnShowAll.TabIndex = 6;
             btnShowAll.Text = "Show All";
             btnShowAll.UseVisualStyleBackColor = true;
+            btnShowAll.Click += btnShowAll_Click;
             // 
             // btnSearchFilter
             // 
@@ -205,6 +206,111 @@
             grpIssueDetails.TabStop = false;
             grpIssueDetails.Text = "Issue Details";
             // 
+            // btnDelete
+            // 
+            btnDelete.Location = new Point(820, 240);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(280, 33);
+            btnDelete.TabIndex = 20;
+            btnDelete.Text = "Delete Selected";
+            btnDelete.UseVisualStyleBackColor = true;
+            // 
+            // btnUpdate
+            // 
+            btnUpdate.Location = new Point(520, 240);
+            btnUpdate.Name = "btnUpdate";
+            btnUpdate.Size = new Size(278, 33);
+            btnUpdate.TabIndex = 19;
+            btnUpdate.Text = "Update Selected";
+            btnUpdate.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(190, 240);
+            button2.Name = "button2";
+            button2.Size = new Size(150, 33);
+            button2.TabIndex = 18;
+            button2.Text = "Add Issue";
+            button2.UseVisualStyleBackColor = true;
+            // 
+            // btnClear
+            // 
+            btnClear.Location = new Point(18, 240);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(150, 33);
+            btnClear.TabIndex = 17;
+            btnClear.Text = "New / Clear";
+            btnClear.UseVisualStyleBackColor = true;
+            // 
+            // txtDescription
+            // 
+            txtDescription.Location = new Point(18, 135);
+            txtDescription.Name = "txtDescription";
+            txtDescription.Size = new Size(480, 90);
+            txtDescription.TabIndex = 16;
+            txtDescription.Text = "";
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(520, 195);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(580, 25);
+            textBox2.TabIndex = 15;
+            // 
+            // comboBox2
+            // 
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Items.AddRange(new object[] { "Open", "In Progress", "Resolved" });
+            comboBox2.Location = new Point(820, 135);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(280, 25);
+            comboBox2.TabIndex = 14;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Low", "Medium", "High" });
+            comboBox1.Location = new Point(520, 135);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(278, 25);
+            comboBox1.TabIndex = 13;
+            // 
+            // lblStatus
+            // 
+            lblStatus.AutoSize = true;
+            lblStatus.Location = new Point(820, 110);
+            lblStatus.Name = "lblStatus";
+            lblStatus.Size = new Size(47, 19);
+            lblStatus.TabIndex = 11;
+            lblStatus.Text = "Status";
+            // 
+            // lblPriority
+            // 
+            lblPriority.AutoSize = true;
+            lblPriority.Location = new Point(520, 110);
+            lblPriority.Name = "lblPriority";
+            lblPriority.Size = new Size(53, 19);
+            lblPriority.TabIndex = 10;
+            lblPriority.Text = "Priority";
+            // 
+            // lblReportedBy
+            // 
+            lblReportedBy.AutoSize = true;
+            lblReportedBy.Location = new Point(520, 170);
+            lblReportedBy.Name = "lblReportedBy";
+            lblReportedBy.Size = new Size(84, 19);
+            lblReportedBy.TabIndex = 9;
+            lblReportedBy.Text = "Reported by";
+            // 
+            // lblDescription
+            // 
+            lblDescription.AutoSize = true;
+            lblDescription.Location = new Point(18, 110);
+            lblDescription.Name = "lblDescription";
+            lblDescription.Size = new Size(78, 19);
+            lblDescription.TabIndex = 8;
+            lblDescription.Text = "Description";
+            // 
             // dtpDateReported
             // 
             dtpDateReported.Format = DateTimePickerFormat.Short;
@@ -290,111 +396,6 @@
             dgvIssues.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvIssues.Size = new Size(1120, 215);
             dgvIssues.TabIndex = 5;
-            // 
-            // lblDescription
-            // 
-            lblDescription.AutoSize = true;
-            lblDescription.Location = new Point(18, 110);
-            lblDescription.Name = "lblDescription";
-            lblDescription.Size = new Size(78, 19);
-            lblDescription.TabIndex = 8;
-            lblDescription.Text = "Description";
-            // 
-            // lblReportedBy
-            // 
-            lblReportedBy.AutoSize = true;
-            lblReportedBy.Location = new Point(520, 170);
-            lblReportedBy.Name = "lblReportedBy";
-            lblReportedBy.Size = new Size(84, 19);
-            lblReportedBy.TabIndex = 9;
-            lblReportedBy.Text = "Reported by";
-            // 
-            // lblPriority
-            // 
-            lblPriority.AutoSize = true;
-            lblPriority.Location = new Point(520, 110);
-            lblPriority.Name = "lblPriority";
-            lblPriority.Size = new Size(53, 19);
-            lblPriority.TabIndex = 10;
-            lblPriority.Text = "Priority";
-            // 
-            // lblStatus
-            // 
-            lblStatus.AutoSize = true;
-            lblStatus.Location = new Point(820, 110);
-            lblStatus.Name = "lblStatus";
-            lblStatus.Size = new Size(47, 19);
-            lblStatus.TabIndex = 11;
-            lblStatus.Text = "Status";
-            // 
-            // comboBox1
-            // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Low", "Medium", "High" });
-            comboBox1.Location = new Point(520, 135);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(278, 25);
-            comboBox1.TabIndex = 13;
-            // 
-            // comboBox2
-            // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Items.AddRange(new object[] { "Open", "In Progress", "Resolved" });
-            comboBox2.Location = new Point(820, 135);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(280, 25);
-            comboBox2.TabIndex = 14;
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(520, 195);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(580, 25);
-            textBox2.TabIndex = 15;
-            // 
-            // txtDescription
-            // 
-            txtDescription.Location = new Point(18, 135);
-            txtDescription.Name = "txtDescription";
-            txtDescription.Size = new Size(480, 90);
-            txtDescription.TabIndex = 16;
-            txtDescription.Text = "";
-            // 
-            // btnClear
-            // 
-            btnClear.Location = new Point(18, 240);
-            btnClear.Name = "btnClear";
-            btnClear.Size = new Size(150, 33);
-            btnClear.TabIndex = 17;
-            btnClear.Text = "New / Clear";
-            btnClear.UseVisualStyleBackColor = true;
-            // 
-            // button2
-            // 
-            button2.Location = new Point(190, 240);
-            button2.Name = "button2";
-            button2.Size = new Size(150, 33);
-            button2.TabIndex = 18;
-            button2.Text = "Add Issue";
-            button2.UseVisualStyleBackColor = true;
-            // 
-            // btnUpdate
-            // 
-            btnUpdate.Location = new Point(520, 240);
-            btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(278, 33);
-            btnUpdate.TabIndex = 19;
-            btnUpdate.Text = "Update Selected";
-            btnUpdate.UseVisualStyleBackColor = true;
-            // 
-            // btnDelete
-            // 
-            btnDelete.Location = new Point(820, 240);
-            btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(280, 33);
-            btnDelete.TabIndex = 20;
-            btnDelete.Text = "Delete Selected";
-            btnDelete.UseVisualStyleBackColor = true;
             // 
             // lblMessage
             // 

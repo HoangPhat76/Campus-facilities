@@ -8,12 +8,11 @@ namespace Campus_facilities
 {
     internal class IssueManager
     {
-        private readonly string connectionString = 
-            @"Server=(localdb)\\MSSQLLocalDB;" +
-            "Database=CampusFacilitiesDB;" +
-            "Integrated Security=True;" +
-            "Encrypt=True;" +
-            "TrustServerCertificate=True";
+        private readonly string connectionString =
+            @"Server=(localdb)\MSSQLLocalDB;
+            Database=CampusFacilitiesDB;
+            Integrated Security=True;Encrypt=True;
+            TrustServerCertificate=True;";
 
         public DataTable GetAllIssues()
         {
