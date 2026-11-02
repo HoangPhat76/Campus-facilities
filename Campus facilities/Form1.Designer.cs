@@ -42,12 +42,12 @@
             grpIssueDetails = new GroupBox();
             btnDelete = new Button();
             btnUpdate = new Button();
-            button2 = new Button();
+            btnAddIssue = new Button();
             btnClear = new Button();
             txtDescription = new RichTextBox();
-            textBox2 = new TextBox();
-            comboBox2 = new ComboBox();
-            comboBox1 = new ComboBox();
+            txtReportedBy = new TextBox();
+            cboStatus = new ComboBox();
+            cboPriority = new ComboBox();
             lblStatus = new Label();
             lblPriority = new Label();
             lblReportedBy = new Label();
@@ -181,12 +181,12 @@
             // 
             grpIssueDetails.Controls.Add(btnDelete);
             grpIssueDetails.Controls.Add(btnUpdate);
-            grpIssueDetails.Controls.Add(button2);
+            grpIssueDetails.Controls.Add(btnAddIssue);
             grpIssueDetails.Controls.Add(btnClear);
             grpIssueDetails.Controls.Add(txtDescription);
-            grpIssueDetails.Controls.Add(textBox2);
-            grpIssueDetails.Controls.Add(comboBox2);
-            grpIssueDetails.Controls.Add(comboBox1);
+            grpIssueDetails.Controls.Add(txtReportedBy);
+            grpIssueDetails.Controls.Add(cboStatus);
+            grpIssueDetails.Controls.Add(cboPriority);
             grpIssueDetails.Controls.Add(lblStatus);
             grpIssueDetails.Controls.Add(lblPriority);
             grpIssueDetails.Controls.Add(lblReportedBy);
@@ -224,14 +224,15 @@
             btnUpdate.Text = "Update Selected";
             btnUpdate.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnAddIssue
             // 
-            button2.Location = new Point(190, 240);
-            button2.Name = "button2";
-            button2.Size = new Size(150, 33);
-            button2.TabIndex = 18;
-            button2.Text = "Add Issue";
-            button2.UseVisualStyleBackColor = true;
+            btnAddIssue.Location = new Point(190, 240);
+            btnAddIssue.Name = "btnAddIssue";
+            btnAddIssue.Size = new Size(150, 33);
+            btnAddIssue.TabIndex = 18;
+            btnAddIssue.Text = "Add Issue";
+            btnAddIssue.UseVisualStyleBackColor = true;
+            btnAddIssue.Click += btnAddIssue_Click;
             // 
             // btnClear
             // 
@@ -250,30 +251,30 @@
             txtDescription.TabIndex = 16;
             txtDescription.Text = "";
             // 
-            // textBox2
+            // txtReportedBy
             // 
-            textBox2.Location = new Point(520, 195);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(580, 25);
-            textBox2.TabIndex = 15;
+            txtReportedBy.Location = new Point(520, 195);
+            txtReportedBy.Name = "txtReportedBy";
+            txtReportedBy.Size = new Size(580, 25);
+            txtReportedBy.TabIndex = 15;
             // 
-            // comboBox2
+            // cboStatus
             // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Items.AddRange(new object[] { "Open", "In Progress", "Resolved" });
-            comboBox2.Location = new Point(820, 135);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(280, 25);
-            comboBox2.TabIndex = 14;
+            cboStatus.FormattingEnabled = true;
+            cboStatus.Items.AddRange(new object[] { "Open", "In Progress", "Resolved" });
+            cboStatus.Location = new Point(820, 135);
+            cboStatus.Name = "cboStatus";
+            cboStatus.Size = new Size(280, 25);
+            cboStatus.TabIndex = 14;
             // 
-            // comboBox1
+            // cboPriority
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Low", "Medium", "High" });
-            comboBox1.Location = new Point(520, 135);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(278, 25);
-            comboBox1.TabIndex = 13;
+            cboPriority.FormattingEnabled = true;
+            cboPriority.Items.AddRange(new object[] { "Low", "Medium", "High" });
+            cboPriority.Location = new Point(520, 135);
+            cboPriority.Name = "cboPriority";
+            cboPriority.Size = new Size(278, 25);
+            cboPriority.TabIndex = 13;
             // 
             // lblStatus
             // 
@@ -454,17 +455,17 @@
         private ComboBox cboCategory;
         private TextBox txtLocation;
         private TextBox txtIssueID;
-        private ComboBox comboBox2;
-        private ComboBox comboBox1;
+        private ComboBox cboStatus;
+        private ComboBox cboPriority;
         private Label lblStatus;
         private Label lblPriority;
         private Label lblReportedBy;
         private Label lblDescription;
         private RichTextBox txtDescription;
-        private TextBox textBox2;
+        private TextBox txtReportedBy;
         private Button btnDelete;
         private Button btnUpdate;
-        private Button button2;
+        private Button btnAddIssue;
         private Button btnClear;
         private Label lblMessage;
     }

@@ -73,6 +73,7 @@ namespace Campus_facilities
                 @Status, 
                 @ReportedBy
                 );";
+            
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 using (SqlCommand command = new SqlCommand(sql, connection))
@@ -86,10 +87,10 @@ namespace Campus_facilities
                     command.Parameters.Add("@ReportedBy", SqlDbType.NVarChar, 100);
                     
                     connection.Open();
+                    
                     return command.ExecuteNonQuery();
                 }
             }
-            return 0;
         }
     }
 }
