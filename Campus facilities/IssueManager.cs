@@ -78,14 +78,14 @@ namespace Campus_facilities
             {
                 using (SqlCommand command = new SqlCommand(sql, connection))
                 {
-                    command.Parameters.Add("@Location", SqlDbType.NVarChar, 100);
-                    command.Parameters.Add("@Description", SqlDbType.NVarChar, 500);
-                    command.Parameters.Add("@Category", SqlDbType.NVarChar, 50);
+                    command.Parameters.Add("@Location", SqlDbType.NVarChar, 100).Value = issue.Location;
+                    command.Parameters.Add("@Description", SqlDbType.NVarChar, 500).Value = issue.Description;
+                    command.Parameters.Add("@Category", SqlDbType.NVarChar, 50).Value = issue.Category;
                     command.Parameters.Add("@DateReported", SqlDbType.Date).Value = issue.DateReported;
-                    command.Parameters.Add("@Priority", SqlDbType.Int);
-                    command.Parameters.Add("@Status", SqlDbType.NVarChar, 50);
-                    command.Parameters.Add("@ReportedBy", SqlDbType.NVarChar, 100);
-                    
+                    command.Parameters.Add("@Priority", SqlDbType.NVarChar, 20).Value = issue.Priority;
+                    command.Parameters.Add("@Status", SqlDbType.NVarChar, 20).Value = issue.Status;
+                    command.Parameters.Add("@ReportedBy", SqlDbType.NVarChar, 100).Value = issue.ReportedBy;
+
                     connection.Open();
                     
                     return command.ExecuteNonQuery();

@@ -43,7 +43,7 @@ namespace Campus_facilities
         public DateTime DateReported
         {
             get { return dateReported; }
-            set { dateReported = value; }
+            set { dateReported = value.Date; }
         }
 
         public string Priority
@@ -101,14 +101,20 @@ namespace Campus_facilities
             }
 
             if (dateReported > DateTime.Today)
+            {
                 return "Date reported cannot be in the future.";
+            }
 
             if (string.IsNullOrWhiteSpace(reportedBy))
+            {
                 return "Reported By is required.";
+            }
 
             if (reportedBy.Length > 100)
+            {
                 return "Reported By cannot exceed 100 characters.";
-            
+            }
+
             return "";
         }
     }

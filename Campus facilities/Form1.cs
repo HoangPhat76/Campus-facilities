@@ -108,5 +108,24 @@ namespace Campus_facilities
                     MessageBoxIcon.Warning);
             }
         }
+        private void ResetIssueInputs()
+        {
+            txtLocation.Clear();
+            txtDescription.Clear();
+            txtIssueID.Clear();
+            txtReportedBy.Clear();
+
+            cboCategory.SelectedIndex = -1;
+            dtpDateReported.Value = DateTime.Today;
+            cboPriority.SelectedIndex = -1;
+            cboStatus.SelectedItem = null;
+            txtReportedBy.Clear();
+            
+            txtLocation.Focus();
+
+            btnAddIssue.Enabled = true;
+            btnUpdate.Enabled = false;
+            btnDelete.Enabled = false;
+        }
     }
 }
