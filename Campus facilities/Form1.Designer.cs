@@ -410,7 +410,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1144, 876);
+            ClientSize = new Size(1162, 876);
             Controls.Add(lblMessage);
             Controls.Add(dgvIssues);
             Controls.Add(grpIssueDetails);

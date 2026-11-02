@@ -43,5 +43,53 @@ namespace Campus_facilities
             }
             return issues;
         }
+        public int AddIssue(FacilityIssue issue)
+        {
+            string validationMessage = issue.Validate();
+
+            if (validationMessage != "")
+            {
+                throw new ArgumentException(validationMessage);
+            }
+
+            string sql = @"
+                INSERT INTO FacilityIssues
+                (
+                Location,
+                Description,
+                Category,
+                DateReported,
+                Priority,
+                Status, 
+                ReportedBy
+                )
+                VALUES
+                (
+                @Location, 
+                @Description, 
+                @Category, 
+                @DateReported, 
+                @Priority, 
+                @Status, 
+                @ReportedBy
+                );";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.Add("@Location", SqlDbType.NVarChar, 100);
+                    command.Parameters.Add("@Description", SqlDbType.NVarChar, 500);
+                    command.Parameters.Add("@Category", SqlDbType.NVarChar, 50);
+                    command.Parameters.Add("@DateReported", SqlDbType.Date).Value = issue.DateReported;
+                    command.Parameters.Add("@Priority", SqlDbType.Int);
+                    command.Parameters.Add("@Status", SqlDbType.NVarChar, 50);
+                    command.Parameters.Add("@ReportedBy", SqlDbType.NVarChar, 100);
+                    
+                    connection.Open();
+                    return command.ExecuteNonQuery();
+                }
+            }
+            return 0;
+        }
     }
 }
