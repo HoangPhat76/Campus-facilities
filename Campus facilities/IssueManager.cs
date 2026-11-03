@@ -155,5 +155,37 @@ namespace Campus_facilities
                 }
             }
         }
+        public DataTable SearchIssues(string searchTerm)
+        {
+            DataTable issues = new DataTable();
+            string sql = @"
+                SELECT  
+                    IssueId AS IssueID,
+                    Location,
+                    Description,    
+                    Category,
+                    DateReported,
+                    Priority,
+                    Status,
+                    ReportedBy
+                FROM FacilityIssues
+                WHERE 
+                    Location LIKE @SearchTerm OR
+                    Description LIKE @SearchTerm OR
+                    Category LIKE @SearchTerm OR
+                    Priority LIKE @SearchTerm OR
+                    Status LIKE @SearchTerm OR
+                    ReportedBy LIKE @SearchTerm
+                ORDER BY IssueId DESC;";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlDataAdapter adapter = new SqlDataAdapter(sql, connection))
+                {
+                    adapter.SelectCommand.Parameters.Add("@SearchTerm", SqlDbType.NVarChar, 100).Value = "%" + searchTerm + "%";
+                    connection.Open();
+                    adapter.Fill(issues);
+                }
+            }
+            return issues;
     }
 }
