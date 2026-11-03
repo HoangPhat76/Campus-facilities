@@ -22,8 +22,7 @@ namespace Campus_facilities
                 dgvIssues.DataSource = issues;
                 dgvIssues.AutoGenerateColumns = true;
 
-                dgvIssues.ClearSelection();
-                dgvIssues.CurrentCell = null;
+                ResetIssueInputs();
 
                 txtSearchLocation.Clear();
                 cboFilterStatus.SelectedItem = "All";
@@ -154,13 +153,18 @@ namespace Campus_facilities
             cboPriority.Text = Convert.ToString(selectedRow.Cells["Priority"].Value);
             cboStatus.Text = Convert.ToString(selectedRow.Cells["Status"].Value);
             txtReportedBy.Text = Convert.ToString(selectedRow.Cells["ReportedBy"].Value);
-                
-                btnAddIssue.Enabled = false;
-                btnUpdate.Enabled = true;
-                btnDelete.Enabled = true;
 
-                lblMessage.Text = $"Issue #{selectedIssueId} selected for editing";
+            btnAddIssue.Enabled = false;
+            btnUpdate.Enabled = true;
+            btnDelete.Enabled = true;
+
+            lblMessage.Text = $"Issue #{selectedIssueId} selected for editing";
         }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            ResetIssueInputs();
+            lblMessage.Text = "Ready to enter a new issue";
         }
     }
 }
