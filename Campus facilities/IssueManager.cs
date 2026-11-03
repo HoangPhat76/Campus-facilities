@@ -155,9 +155,32 @@ namespace Campus_facilities
                 }
             }
         }
-        public DataTable SearchIssues(string searchTerm)
+        public DataTable SearchIssues(string location, string status)
         {
+            location = (location ?? "").Trim();
+            status = (status ?? "").Trim();
+
+            if (location.Length > 100)
+            {
+                throw new ArgumentException("Location search must not exceed 100 characters.");
+            }
+            
+            if (status == "")
+            {
+                status = "All";            
+            }
+
+            if    (status != "All"
+                && status != "Outstanding" 
+                && status != "Open"
+                && status != "In Progress"
+                && status != "Resolved")
+            {
+                throw new ArgumentException("Please select a valid filter.");
+            }
+            
             DataTable issues = new DataTable();
+            
             string sql = @"
                 SELECT  
                     IssueId AS IssueID,
@@ -170,22 +193,38 @@ namespace Campus_facilities
                     ReportedBy
                 FROM FacilityIssues
                 WHERE 
-                    Location LIKE @SearchTerm OR
-                    Description LIKE @SearchTerm OR
-                    Category LIKE @SearchTerm OR
-                    Priority LIKE @SearchTerm OR
-                    Status LIKE @SearchTerm OR
-                    ReportedBy LIKE @SearchTerm
+                    (
+                        @Location = N'' OR
+                        CHARINDEX(@Location, Location) > 0
+                    ) 
+                    AND
+                    (
+                        @Status = N'ALL'
+                        OR
+                        (
+                            @Status = N'Outstanding' 
+                            AND Status IN (N'Open', N'In
+                        ) 
+                        OR Status = @Status
+                    )
                 ORDER BY IssueId DESC;";
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                using (SqlDataAdapter adapter = new SqlDataAdapter(sql, connection))
+                using (SqlCommand command = new SqlCommand(sql, connection))
                 {
-                    adapter.SelectCommand.Parameters.Add("@SearchTerm", SqlDbType.NVarChar, 100).Value = "%" + searchTerm + "%";
+                    command.Parameters.Add("@Location", SqlDbType.NVarChar, 100).Value = location;
+                    command.Parameters.Add("@Status", SqlDbType.NVarChar, 20).Value = status;
                     connection.Open();
-                    adapter.Fill(issues);
+                    
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        connection.Open();
+                        adapter.Fill(issues);
+                    }
                 }
             }
             return issues;
+        }
     }
 }
