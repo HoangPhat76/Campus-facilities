@@ -6,6 +6,7 @@ namespace Campus_facilities
     public partial class Form1 : Form
     {
         private readonly IssueManager issueManager = new IssueManager();
+        private int selectedIssueId = 0;
 
         public Form1()
         {
@@ -46,13 +47,13 @@ namespace Campus_facilities
         {
             FacilityIssue issue = new FacilityIssue();
 
-                issue.Location = txtLocation.Text;
-                issue.Description = txtDescription.Text;
-                issue.Category = cboCategory.Text;
-                issue.DateReported = dtpDateReported.Value.Date;
-                issue.Priority = cboPriority.Text;
-                issue.Status = cboStatus.Text;
-                issue.ReportedBy = txtReportedBy.Text;
+            issue.Location = txtLocation.Text;
+            issue.Description = txtDescription.Text;
+            issue.Category = cboCategory.Text;
+            issue.DateReported = dtpDateReported.Value.Date;
+            issue.Priority = cboPriority.Text;
+            issue.Status = cboStatus.Text;
+            issue.ReportedBy = txtReportedBy.Text;
 
             try
             {
@@ -110,6 +111,8 @@ namespace Campus_facilities
         }
         private void ResetIssueInputs()
         {
+            selectedIssueId = 0;
+
             txtLocation.Clear();
             txtDescription.Clear();
             txtIssueID.Clear();
@@ -120,12 +123,44 @@ namespace Campus_facilities
             cboPriority.SelectedIndex = -1;
             cboStatus.SelectedItem = null;
             txtReportedBy.Clear();
-            
+
             txtLocation.Focus();
 
             btnAddIssue.Enabled = true;
             btnUpdate.Enabled = false;
             btnDelete.Enabled = false;
+        }
+
+        private void dgvIssues_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.RowIndex >= dgvIssues.Rows.Count)
+            {
+                return;
+            }
+
+            DataGridViewRow selectedRow = dgvIssues.Rows[e.RowIndex];
+
+            if (selectedRow.IsNewRow)
+            {
+                return;
+            }
+
+            selectedIssueId = Convert.ToInt32(selectedRow.Cells["IssueID"].Value);
+            txtIssueID.Text = selectedIssueId.ToString();
+            txtLocation.Text = Convert.ToString(selectedRow.Cells["Location"].Value);
+            txtDescription.Text = Convert.ToString(selectedRow.Cells["Description"].Value);
+            cboCategory.Text = Convert.ToString(selectedRow.Cells["Category"].Value);
+            dtpDateReported.Value = Convert.ToDateTime(selectedRow.Cells["DateReported"].Value);
+            cboPriority.Text = Convert.ToString(selectedRow.Cells["Priority"].Value);
+            cboStatus.Text = Convert.ToString(selectedRow.Cells["Status"].Value);
+            txtReportedBy.Text = Convert.ToString(selectedRow.Cells["ReportedBy"].Value);
+                
+                btnAddIssue.Enabled = false;
+                btnUpdate.Enabled = true;
+                btnDelete.Enabled = true;
+
+                lblMessage.Text = $"Issue #{selectedIssueId} selected for editing";
+        }
         }
     }
 }

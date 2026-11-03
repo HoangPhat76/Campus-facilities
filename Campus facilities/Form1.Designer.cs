@@ -397,6 +397,7 @@
             dgvIssues.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvIssues.Size = new Size(1120, 215);
             dgvIssues.TabIndex = 5;
+            dgvIssues.CellClick += dgvIssues_CellClick;
             // 
             // lblMessage
             // 
