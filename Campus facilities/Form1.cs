@@ -1,5 +1,6 @@
-using System.Data;
 using Microsoft.Data.SqlClient;
+using System.Data;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Campus_facilities
 {
@@ -165,6 +166,93 @@ namespace Campus_facilities
         {
             ResetIssueInputs();
             lblMessage.Text = "Ready to enter a new issue";
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (selectedIssueId <= 0)
+            {
+                MessageBox.Show(
+                    "Please select an issue to update.",
+                    "No Issue Selected",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
+
+            FacilityIssue issue = new FacilityIssue();
+
+            issue.IssueId = selectedIssueId;
+            issue.Location = txtLocation.Text;
+            issue.Description = txtDescription.Text;
+            issue.Category = cboCategory.Text;
+            issue.DateReported = dtpDateReported.Value;
+            issue.Priority = cboPriority.Text;
+            issue.Status = cboStatus.Text;
+            issue.ReportedBy = txtReportedBy.Text;
+
+            try
+            {
+                int affectedRows = issueManager.UpdateIssue(issue);
+
+                if (affectedRows == 0)
+                {
+                    MessageBox.Show(
+                        "The selected issue was not found." +
+                        "Click Show All and select an issue again.",
+                        "Issue Not Found",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+
+                    ResetIssueInputs();
+                    lblMessage.Text = "No records updated.";
+                    return;
+                }
+                
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(
+                    ex.Message,
+                    "Check your input",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(
+                    "Could not update the issue.\n\n" + ex.Message,
+                    "Database Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+
+            try
+            {
+                DataTable issues = issueManager.GetAllIssues();
+
+                dgvIssues.AutoGenerateColumns = true;
+                dgvIssues.DataSource = issues;
+                dgvIssues.ClearSelection();
+                dgvIssues.CurrentCell = null;
+
+                lblMessage.Text =
+                    $"Issue #{selectedIssueId} updated successfully. Showing all {issues.Rows.Count} issue(s).";
+            }
+            catch (SqlException ex)
+            {
+                lblMessage.Text = $"Issue #{selectedIssueId} updated, but the list could not be refreshed.";
+                MessageBox.Show(
+                    "The update was saved, but the list could not refresh.\n" +
+                    "Click Show All to reload.\n\n" +
+                    ex.Message,
+                    "Refresh Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
         }
     }
 }

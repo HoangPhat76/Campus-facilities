@@ -223,6 +223,7 @@
             btnUpdate.TabIndex = 19;
             btnUpdate.Text = "Update Selected";
             btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.Click += btnUpdate_Click;
             // 
             // btnAddIssue
             // 
