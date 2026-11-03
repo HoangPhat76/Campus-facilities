@@ -208,7 +208,7 @@ namespace Campus_facilities
                     lblMessage.Text = "No records updated.";
                     return;
                 }
-                
+
             }
             catch (ArgumentException ex)
             {
@@ -252,6 +252,97 @@ namespace Campus_facilities
                     "Refresh Error",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            if (selectedIssueId <= 0)
+            {
+                MessageBox.Show(
+                    "Please Select an issue to delete.", 
+                    "No issue selected", 
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+
+                return;
+            }
+
+            int deletedIssueId = selectedIssueId;
+
+            DialogResult answer = MessageBox.Show(
+                $"Delete Issue #{deletedIssueId} permanently?\n\n" +
+                "This action cannot be undone through the application.",
+                "Confirm Deletion",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning,
+                MessageBoxDefaultButton.Button2);
+
+            if (answer != DialogResult.Yes)
+            {
+                return;
+            }
+            try
+            {
+                int affectedRows =
+                    issueManager.DeleteIssue(deletedIssueId);
+                
+                if (affectedRows == 0)
+                {
+                    ResetIssueInputs();
+                    lblMessage.Text = "No records deleted. Click Show All to refresh the list.";
+
+                    MessageBox.Show(
+                        "The selected issue was not found.\n" +
+                        "Click Show All and to refresh the list.",
+                        "Issue Not Found",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+
+                    return;
+                }
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(
+                    ex.Message,
+                    "Check your selection",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+
+                return;
+            }
+
+            ResetIssueInputs();
+            txtSearchLocation.Clear();
+            cboFilterStatus.SelectedItem = "All";
+
+            try
+            {
+                DataTable issue = issueManager.GetAllIssues();
+
+                dgvIssues.AutoGenerateColumns = true;
+                dgvIssues.DataSource = issue;
+                dgvIssues.ClearSelection();
+                dgvIssues.CurrentCell = null;
+
+                lblMessage.Text =
+                    $"Issue #{deletedIssueId} deleted successfully. " +
+                    $"Showing all {issue.Rows.Count} issue(s).";
+
+            }
+            catch (SqlException ex)
+            {
+                lblMessage.Text = $"Issue #{deletedIssueId} deleted, but the list could not be refreshed.";
+
+                MessageBox.Show(
+                    "The issue was deleted, but the list could not be refreshed.\n" +
+                    "Click Show All to reload.\n\n" +
+                    ex.Message,
+                    "Refresh Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                throw;
             }
         }
     }

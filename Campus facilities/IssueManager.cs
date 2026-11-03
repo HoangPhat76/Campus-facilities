@@ -136,5 +136,24 @@ namespace Campus_facilities
                 }
             }
         }
+        public int DeleteIssue(int issueId)
+        {
+            if (issueId <= 0)
+            {
+                throw new ArgumentException("Please select an issue to delete.");
+            }
+            string sql = @"
+                DELETE FROM dbo.FacilityIssues
+                WHERE IssueID = @IssueID;";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand(sql, connection))
+                {
+                    command.Parameters.Add("@IssueID", SqlDbType.Int).Value = issueId;
+                    connection.Open();
+                    return command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

@@ -214,6 +214,7 @@
             btnDelete.TabIndex = 20;
             btnDelete.Text = "Delete Selected";
             btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnUpdate
             // 
