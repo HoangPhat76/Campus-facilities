@@ -203,7 +203,7 @@ namespace Campus_facilities
                         OR
                         (
                             @Status = N'Outstanding' 
-                            AND Status IN (N'Open', N'In
+                            AND Status IN (N'Open', N'In Progress')
                         ) 
                         OR Status = @Status
                     )
@@ -215,7 +215,6 @@ namespace Campus_facilities
                 {
                     command.Parameters.Add("@Location", SqlDbType.NVarChar, 100).Value = location;
                     command.Parameters.Add("@Status", SqlDbType.NVarChar, 20).Value = status;
-                    connection.Open();
                     
                     using (SqlDataAdapter adapter = new SqlDataAdapter(command))
                     {

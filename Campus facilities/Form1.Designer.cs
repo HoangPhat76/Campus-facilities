@@ -122,6 +122,7 @@
             btnSearchFilter.TabIndex = 5;
             btnSearchFilter.Text = "Search / Filter";
             btnSearchFilter.UseVisualStyleBackColor = true;
+            btnSearchFilter.Click += btnSearchFilter_Click;
             // 
             // cboFilterStatus
             // 

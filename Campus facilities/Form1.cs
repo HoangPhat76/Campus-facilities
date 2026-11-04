@@ -1,5 +1,6 @@
 using Microsoft.Data.SqlClient;
 using System.Data;
+using System.Net.NetworkInformation;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Campus_facilities
@@ -260,8 +261,8 @@ namespace Campus_facilities
             if (selectedIssueId <= 0)
             {
                 MessageBox.Show(
-                    "Please Select an issue to delete.", 
-                    "No issue selected", 
+                    "Please Select an issue to delete.",
+                    "No issue selected",
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
 
@@ -286,7 +287,7 @@ namespace Campus_facilities
             {
                 int affectedRows =
                     issueManager.DeleteIssue(deletedIssueId);
-                
+
                 if (affectedRows == 0)
                 {
                     ResetIssueInputs();
@@ -343,6 +344,55 @@ namespace Campus_facilities
                     MessageBoxButtons.OK,
                     MessageBoxIcon.Warning);
                 throw;
+            }
+        }
+
+        private void btnSearchFilter_Click(object sender, EventArgs e)
+        {
+            string location = txtSearchLocation.Text.Trim();
+            string status = cboFilterStatus.Text;
+
+            if (string.IsNullOrWhiteSpace(status))
+            {
+                status = "All";
+            }
+
+            try
+            {
+                DataTable issues = issueManager.SearchIssues(location, status);
+
+                dgvIssues.AutoGenerateColumns = true;
+                dgvIssues.DataSource = issues;
+
+                ResetIssueInputs();
+
+                cboFilterStatus.SelectedItem = status;
+
+                if (issues.Rows.Count == 0)
+                {
+                    lblMessage.Text = "No issue match the current filters.";
+                }
+                else
+                {
+                    lblMessage.Text = $"{issues.Rows.Count} issue(s) displayed." + $"Status filter; {status}.";
+                }
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(
+                    ex.Message,
+                    "Check your search",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+            }
+            catch (SqlException ex)
+            {
+                lblMessage.Text = "Could not load the issues";
+                MessageBox.Show(
+                    "Could not search the issues from the database.\n\n" + ex.Message,
+                    "Database Error",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
     }
