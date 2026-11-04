@@ -10,11 +10,21 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="7.1.1" />
+    <None Remove="Data\CampusFacilitiesDB.ldf" />
+    <None Remove="Data\CampusFacilitiesDB.mdf" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
+    <Content Include="Data\CampusFacilitiesDB.ldf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\CampusFacilitiesDB.mdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="7.1.1" />
   </ItemGroup>
 
 </Project>
