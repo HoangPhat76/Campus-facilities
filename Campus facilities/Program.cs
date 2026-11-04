@@ -11,7 +11,9 @@ namespace Campus_facilities
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
+            System.AppDomain.CurrentDomain.SetData("DataDirectory", System.AppContext.BaseDirectory);
             Application.Run(new Form1());
+            
         }
     }
 }
