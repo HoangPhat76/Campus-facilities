@@ -15,6 +15,7 @@ namespace Campus_facilities
             InitializeComponent();
         }
 
+        // Loads every issue from the database and displays the results in the grid.
         private void btnShowAll_Click(object sender, EventArgs e)
         {
             try
@@ -30,9 +31,9 @@ namespace Campus_facilities
                 cboFilterStatus.SelectedItem = "All";
 
                 lblMessage.Text =
-                    $"Database connected. {issues.Rows.Count} issue(s) displayed.";
+                    $"Database is connected. There are {issues.Rows.Count} issue(s) displayed.";
             }
-            catch (SqlException ex)
+            catch (SqlException ex)                                                                                                                                                                         
             {
                 lblMessage.Text = "Could not load the issues";
 
@@ -44,6 +45,8 @@ namespace Campus_facilities
             }
         }
 
+        // Runs when the Add Issue button is clicked: collects the form values,
+        // saves the issue to the database, clears the input fields, and refreshes the issue list.
         private void btnAddIssue_Click(object sender, EventArgs e)
         {
             FacilityIssue issue = new FacilityIssue();
@@ -110,6 +113,7 @@ namespace Campus_facilities
                     MessageBoxIcon.Warning);
             }
         }
+        // Clears the issue form and returns the buttons to their default state.
         private void ResetIssueInputs()
         {
             selectedIssueId = 0;
@@ -132,6 +136,7 @@ namespace Campus_facilities
             btnDelete.Enabled = false;
         }
 
+        // Copies the selected grid row into the form so it can be updated or deleted.
         private void dgvIssues_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0 || e.RowIndex >= dgvIssues.Rows.Count)
@@ -163,12 +168,14 @@ namespace Campus_facilities
             lblMessage.Text = $"Issue #{selectedIssueId} selected for editing";
         }
 
+        // Clears the current form values and prepares the form for a new issue.
         private void btnClear_Click(object sender, EventArgs e)
         {
             ResetIssueInputs();
             lblMessage.Text = "Ready to enter a new issue";
         }
 
+        // Updates the selected issue in the database and reloads the issue list.
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             if (selectedIssueId <= 0)
@@ -256,6 +263,7 @@ namespace Campus_facilities
             }
         }
 
+        // Confirms deletion, removes the selected issue, and refreshes the grid.
         private void btnDelete_Click(object sender, EventArgs e)
         {
             if (selectedIssueId <= 0)
@@ -347,6 +355,7 @@ namespace Campus_facilities
             }
         }
 
+        // Searches the database using the entered location and selected status filter.
         private void btnSearchFilter_Click(object sender, EventArgs e)
         {
             string location = txtSearchLocation.Text.Trim();
